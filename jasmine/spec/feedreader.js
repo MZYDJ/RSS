@@ -30,28 +30,22 @@ $(function() {
         /* TODO:
          * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空的。
          */
-        it('有链接', function() {
-            for (const i of allFeeds) {
-                checkSome(i.url);
-            }
-        });
+        for (const i in allFeeds) {
+            /* TODO:
+             * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空的。
+             */
+            it('第' + i + '个Feed有名字', function() {
+                checkSome(allFeeds[i].name);
+            });
+            it('第' + i + '个Feed有链接', function() {
+                checkSome(allFeeds[i].url);
+            });
+            // 使用正则表达式确认链接为有效链接
+            it('第' + i + '个Feed链接有效', function() {
+                expect(allFeeds[i].url).toMatch(regularUrl);
+            });
+        }
 
-        // 使用正则表达式确认链接为有效链接
-        it('链接有效', function() {
-            for (const i of allFeeds) {
-                expect(i.url).toMatch(regularUrl);
-            }
-        });
-
-        /* TODO:
-         * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空的。
-         */
-        it('有名字', function() {
-            for (const i of allFeeds) {
-                expect(i.name).toBeDefined();
-                expect(i.name.length).not.toBe(0);
-            }
-        });
     });
 
 
